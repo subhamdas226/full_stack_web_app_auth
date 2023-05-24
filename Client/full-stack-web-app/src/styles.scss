@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.clip{
+    clip-path: circle(49.8% at 10% 49%);
+    // background: #fbff91;
+    // background: #80deea;
+    background: #c5a7ca;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    z-index: -1;
+}
+app-login{
+    display: flex;
+}

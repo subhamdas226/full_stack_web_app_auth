@@ -1,0 +1,67 @@
+<!-- <div class="login-form">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" />
+        <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
+          Username is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+        <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+          Password is required
+        </mat-error>
+        
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+        Login
+      </button>
+    </form>
+  </div> -->
+
+  <div class="abs">
+    <ul>
+        <!-- <li><a class="active" routerLink="/landing-page">QuizPro</a></li> -->
+        <li class="rt"><a routerLink="/register">SignUp</a></li>
+        <li class="rt"><a routerLink="/login">Login</a></li>
+        <li class="rt"><a routerLink="#">Support</a></li>
+        
+        
+      </ul>
+  </div>
+  <form action="" class="form-container" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-card class="w-50">
+      <mat-card-header>
+      </mat-card-header>
+      <mat-card-content>
+        <h1 class="cursive">Login</h1>
+   
+        <div class="row c-row">
+          <mat-form-field>
+            <mat-label class="f-size16">
+              <mat-icon [class.c-purple]="true" class="f-size25" matPrefix>email</mat-icon>
+              Enter Email
+            </mat-label>
+            <input class="h30 f-size18" matInput type="email" formControlName="Email" required [pattern]='emailPattern'>
+          </mat-form-field>
+        </div>
+
+
+        <div class="row c-row">
+          <mat-form-field>
+            <mat-label class="f-size16">
+              <mat-icon [class.c-purple]="true" class="f-size25" matPrefix>password</mat-icon>
+              Enter Passowrd
+            </mat-label>
+            <input class="h30 f-size18" matInput type="password"  formControlName="password" required >
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions class="dflex">
+        <button mat-raised-button color="primary" class="btn-large">login</button>
+      </mat-card-actions>
+    </mat-card>
+</form>
