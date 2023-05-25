@@ -6,6 +6,29 @@ const bcrypt = require('bcryptjs');
 
 const User = require('../model/user')
 
+
+const secretKey = 'mySecretKey';
+
+// Middleware to check if user is authenticated
+function checkAuth(req, res, next) {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.status(401).send('Unauthorized');
+  }
+  try {
+    const decoded = jwt.verify(token, secretKey);
+    req.user = decoded;
+    next();
+  } catch (e) {
+    res.status(400).send('Invalid token');
+  }
+}
+
+// Protected route that requires authentication
+router.get('/protected', checkAuth, (req, res) => {
+    res.status(200).send(`Authorised`);
+  });
+
 router.post('/register', (req, res) => {
     let user = req.body;
     let newUser = new User({
@@ -22,7 +45,7 @@ router.post('/register', (req, res) => {
         }
         else {
             let payload = { subject: data._id };
-            let token = jwt.sign(payload, 'secretKey', { expiresIn: '1h' })
+            let token = jwt.sign(payload, secretKey, { expiresIn: '1h' })
 
             res.status(200).send({ token });
         }
@@ -48,6 +71,10 @@ router.post('/login', async (req, res) => {
                 expiresIn: '1d'
             }
         )
+        res.cookie('token', token, {
+            expires: Date.now() + 3600 * 1000,
+            httpOnly  : true
+        });
         res.status(200).send({ name: user.name, email: user.eamil, token: token });
     }
     else {
